@@ -8,42 +8,46 @@ const Navbar = () => {
 	const { data, status } = useSession();
 
 	return (
-		<nav>
+		<nav className="flex justify-between items-center">
 			<div className="logo">
 				<Image src="/logo.png" alt="logo" width={77} height={77} />
 			</div>
-			<Link href="/">
-				<a>Home</a>
-			</Link>
 
-			{status === "authenticated" ? (
-				<>
-					<Link href="/dashboard">
-						<a>Dashboard</a>
-					</Link>
-					<button
-						onClick={() => {
-							signOut({
-								callbackUrl: "http://localhost:3000/",
-							});
-						}}
-					>
-						Log out
-					</button>
-				</>
-			) : (
-				<>
-					<button
-						onClick={() => {
-							signIn("github", {
-								callbackUrl: "http://localhost:3000/dashboard/",
-							});
-						}}
-					>
-						SignIn
-					</button>
-				</>
-			)}
+			<div>
+				<Link href="/">
+					<a>Home</a>
+				</Link>
+
+				{status === "authenticated" ? (
+					<>
+						<Link href="/dashboard">
+							<a>Dashboard</a>
+						</Link>
+						<button
+							onClick={() => {
+								signOut({
+									callbackUrl: "http://localhost:3000/",
+								});
+							}}
+						>
+							Log out
+						</button>
+					</>
+				) : (
+					<>
+						<button
+							onClick={() => {
+								signIn("github", {
+									callbackUrl:
+										"http://localhost:3000/dashboard/",
+								});
+							}}
+						>
+							SignIn
+						</button>
+					</>
+				)}
+			</div>
 		</nav>
 	);
 };
