@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 export default function Home() {
+	const { data, status } = useSession();
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -15,15 +16,23 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<button
-				onClick={() => {
-					signIn("github", {
-						callbackUrl: "http://localhost:3000/dashboard",
-					});
-				}}
-			>
-				SignIn
-			</button>
+			{status === "authenticated" ? (
+				<>
+					<button onClick={() => {}}>Log out</button>
+				</>
+			) : (
+				<>
+					<button
+						onClick={() => {
+							signIn("github", {
+								callbackUrl: "http://localhost:3000/dashboard",
+							});
+						}}
+					>
+						SignIn
+					</button>
+				</>
+			)}
 		</div>
 	);
 }
