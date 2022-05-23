@@ -104,7 +104,7 @@ const Navbar = () => {
 											});
 										}}
 									>
-										SignIn
+										Log in with GitHub
 									</button>
 								</>
 							)}
@@ -197,7 +197,7 @@ const Navbar = () => {
 											});
 										}}
 									>
-										SignIn
+										Log in with GitHub
 									</button>
 								</>
 							)}
